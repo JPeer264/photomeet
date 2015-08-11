@@ -126,10 +126,11 @@
 
 **Simons turn**
 
-For example:
+For example: 
+
+_spontaner einfall... kann, muss aber nicht übernommen werden_
 
 **setUser(JsonOfUser)**
-
 ```json
 {
 	"Username": "",
@@ -139,7 +140,29 @@ For example:
 }
 ```
 
-## ToDo
+**setChallenge(JsonOfChallenge)**
+
+> for backend
+
+```json
+{
+	"type": "monthly",
+	"name": "Simons cat",
+	"description": "Draw Simons cat!"
+}
+```
+
+**setUpload(JsonOfUpload)**
+```json
+{
+	"challengeID": "wefi0329fi049fj23fjc3ekßk",
+	"name": "Simons cat in vienna",
+	"description": "Drawing of simons cat in vienna! Drawed with passion",
+	"username": "jan"
+}
+```
+
+## ToDo - Getter
 
 | Done  | Functions            | Description |
 | :---: | -------------------- | ----------- |
@@ -150,3 +173,8 @@ For example:
 | :x:   | getEntrys            |             |
 | :x:   | getEntryDetail       |             |
 | :x:   | getUserDetail        |             |
+
+## ToDo - Setter
+
+| Done  | Functions            | Description |
+| :---: | -------------------- | ----------- |
