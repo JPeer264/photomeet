@@ -30,6 +30,27 @@
 }
 ```
 
+**countAllChallenges(Array)**
+> `countAllChallenges(['month', 'week'])` ausbaufähig auf `countAllChallenges(['day', 'week'])`
+
+```json
+{
+	"month": {
+		"counts": "",
+		"mostUploads": {
+			"alles was zu einer Challenge Quickview gehört": "",
+			"img": "",
+			"name": ""
+		},
+		"mostRated": "sames as mostUploads",
+		"popular": "sames as mostUploads"
+	},
+	"week": {
+		"values": "same as month"
+	}
+}
+```
+
 **getUser()**
 
 > if logged in `return true` - if not `return false`
@@ -124,6 +145,7 @@ For example:
 | :---: | -------------------- | ----------- |
 | :x:   | getMonthlyChallenges |             |
 | :x:   | getWeeklyChallenges  |             |
+| :x:   | countAllChallenges   |             |
 | :x:   | getUser			   |             |
 | :x:   | getEntrys            |             |
 | :x:   | getEntryDetail       |             |
