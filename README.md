@@ -16,7 +16,7 @@
 {
 	"ID": "",
 	"name": "",
-	"img": "",
+	"img": "filename",
 	"description": "",
 	"howManyUploads": ""
 }
@@ -36,7 +36,7 @@ _filterAllChallenges(['month', 'week'])` ausbaufähig auf `filterAllChallenges([
 		"counts": "",
 		"mostUploads": {
 			"alles was zu einer Challenge Quickview gehört": "",
-			"img": "",
+			"img": "filename",
 			"name": ""
 		},
 		"mostRated": "sames as mostUploads",
@@ -63,10 +63,10 @@ Get entries of a specific challenge
 	"ID": "",
 	"category": "monthly/weekly",
 	"name": "",
-	"img": "",
+	"img": "filename",
 	"description": "",
 	"Username/Uploader": "",
-	"Userpic": "",
+	"Userpic": "filename",
 	"Likes": ""
 }
 ```
@@ -82,10 +82,10 @@ Get entries of a specific challenge
 	"ID": "",
 	"category": "monthly/weekly",
 	"name": "",
-	"img": "",
+	"img": "filename",
 	"description": "",
 	"Username/Uploader": "",
-	"Userpic": "",
+	"Userpic": "filename",
 	"Likes": ""
 	"vielleicht gibts noch geile zusätze sonst wärs schwachsinnig eine eigene Funktion im Backend zu machen"
 }
@@ -120,7 +120,7 @@ _maybe laravel stores the user?!_
 {
 	"ID": "",
 	"Username": "",
-	"img": "",
+	"img": "filename",
 	"description": "",
 	"basicInformation": {
 		"prename": "",
@@ -135,13 +135,15 @@ _maybe laravel stores the user?!_
 
 ## POST
 
+> following statements are for **updating** and **creating** as well
+
 ### user
 
 **setUser**
 
 > **required**: & username=value & email=value & password=value & passwordProof=value 
 
-`www.page.com/user?username=value&email=value&password=value&passwordProof=value`
+`www.page.com/user/new?username=value&email=value&password=value&passwordProof=value`
 
 ### challenge
 
@@ -149,7 +151,7 @@ _maybe laravel stores the user?!_
 
 > **required**: & type=month & name=Simons%20Cat & desc=Draw%20Simons%20cat%21 & username=value
 
-`www.page.com/challenge/challengeType/challengeID?name=Simons%20Cat&desc=Draw%20Simons%20cat%21&username=value`
+`www.page.com/challenge/challengeType/challengeID/new?name=Simons%20Cat&desc=Draw%20Simons%20cat%21&username=value`
 
 ### entry
 
@@ -157,7 +159,7 @@ _maybe laravel stores the user?!_
 
 > **required**: & name=Simons%20cat%20in%20vienna & desc=value & username=value
 
-`www.page.com/challenge/challengeType/challengeID?name=Simons%20cat%20in%20vienna&desc=value&username=value`
+`www.page.com/challenge/challengeType/challengeID/new?name=Simons%20cat%20in%20vienna&desc=value&username=value`
 
 ## 
 
@@ -176,10 +178,3 @@ _maybe laravel stores the user?!_
 | :x:  | POST  | /user?username=value&email=value&password=value&passwordProof=value | add new user
 | :x:  | POST  | /challenge/challengeType/challengeID?name=value&desc=value&username=value | add new entry
 | :x:  | POST  | /challenge/challengeType?name=value&username=value | add new challenge
-
-
-
-
-
-
-
