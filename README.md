@@ -91,25 +91,6 @@ Get entries of a specific challenge
 }
 ```
 
-### user
-
-**login**
-
-> **required**: & username=value & email=value & password=value
-
-`www.page.com/login?username=value&password=value`
-or
-`www.page.com/login?email=value&password=value`
-
-_if not logged in `return json` - if already logged in `return false` (depends on laravel if it stores the usersession)_
-
-```json
-{
-	"ID": "",
-	"Username": ""
-}
-```
-
 **getUserDetail**
 
 `www.page.com/username`
@@ -136,14 +117,33 @@ _maybe laravel stores the user?!_
 ## POST
 
 > following statements are for **updating** and **creating** as well
+**!!EXCEPTION!!** login is just for submitting data, returns value
 
 ### user
 
-**setUser**
+**login**
+
+> **required**: & username=value or email=value & password=value.
+
+`www.page.com/login?username=value&password=value`
+or
+`www.page.com/login?email=value&password=value`
+
+_returns:_
+```json
+{
+	"OAUTH": "e72e16c7e42f292c6912e7710c838347ae178b4a"
+}
+```
+> The first login will send username and hashed password. The server will return an TOKEN, which is saved in backend and frontend as well. With every further request, which is submitted by the user, the TOKEN will be in the request as well as `& token=value`. The backend will check the frontend TOKEN with the backend TOKEN. If they are the same, the backend knows, which user is currently logged in. E.g.: `www.page.com/newEntry` `**POST-DATA:** ?entryValues&token=value`
+
+**register / setUser**
 
 > **required**: & username=value & email=value & password=value & passwordProof=value 
 
-`www.page.com/user/new?username=value&email=value&password=value&passwordProof=value`
+`www.page.com/user/new`
+
+`POST-DATA: ?username=value&email=value&password=value&passwordProof=value`
 
 ### challenge
 
@@ -151,7 +151,9 @@ _maybe laravel stores the user?!_
 
 > **required**: & type=month & name=Simons%20Cat & desc=Draw%20Simons%20cat%21 & username=value
 
-`www.page.com/challenge/challengeType/challengeID/new?name=Simons%20Cat&desc=Draw%20Simons%20cat%21&username=value`
+`www.page.com/challenge/challengeType/challengeID/new`
+
+`POST-DATA: ?name=Simons%20Cat&desc=Draw%20Simons%20cat%21&username=value`
 
 ### entry
 
@@ -159,7 +161,9 @@ _maybe laravel stores the user?!_
 
 > **required**: & name=Simons%20cat%20in%20vienna & desc=value & username=value
 
-`www.page.com/challenge/challengeType/challengeID/new?name=Simons%20cat%20in%20vienna&desc=value&username=value`
+`www.page.com/challenge/challengeType/challengeID/new`
+
+`POST-DATA: ?name=Simons%20cat%20in%20vienna&desc=value&username=value`
 
 ## 
 
@@ -173,8 +177,8 @@ _maybe laravel stores the user?!_
 | :x:  | GET   | /challenge/filter?type[]=month       | filters all challenges into Popular, Most Uploads, etc., see above
 | :x:  | GET   | /challenge/challengeType/challengeID | get all entrys from e.g.: /challenge/monthly/244225
 | :x:  | GET   | /challenge/challengeType/challengeID/entryID | get specific entry from challenge. E.g.: /challenge/monthly/244225/412423
-| :x:  | GET   | /login?username=value&password=value | login - is this save? better solution please :bowtie:
 | :x:  | GET   | /Username                            | returns all userinformation
+| :x:  | POST  | /login?username=value&password=value | OTOKEN FTW ! :bowtie:
 | :x:  | POST  | /user?username=value&email=value&password=value&passwordProof=value | add new user
 | :x:  | POST  | /challenge/challengeType/challengeID?name=value&desc=value&username=value | add new entry
 | :x:  | POST  | /challenge/challengeType?name=value&username=value | add new challenge
