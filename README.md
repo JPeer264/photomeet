@@ -12,12 +12,14 @@
 
 `www.page.com/challenge/challengeType `
 
+img returns the filename of the picture with the most likes, if there is no entry it returns false
+
 ```json
 {
 	"ID": "",
 	"name": "",
 	"img": "filename",
-	"description": "",
+	"description": "", 
 	"howManyUploads": ""
 }
 ```
