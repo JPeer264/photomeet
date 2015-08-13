@@ -28,8 +28,6 @@
 
 `www.page.com/challenge/count?type[]=month`
 
-_filterAllChallenges(['month', 'week'])` ausbaufähig auf `filterAllChallenges(['day', 'week'])_
-
 ```json
 {
 	"month": {
@@ -93,9 +91,7 @@ Get entries of a specific challenge
 
 **getUserDetail**
 
-`www.page.com/username`
-
-_maybe laravel stores the user?!_
+`www.page.com/username?token=value`
 
 ```json
 {
@@ -135,7 +131,7 @@ _returns:_
 	"OAUTH": "e72e16c7e42f292c6912e7710c838347ae178b4a"
 }
 ```
-> The first login will send username and hashed password. The server will return an TOKEN, which is saved in backend and frontend as well. With every further request, which is submitted by the user, the TOKEN will be in the request as well as `& token=value`. The backend will check the frontend TOKEN with the backend TOKEN. If they are the same, the backend knows, which user is currently logged in. E.g.: `www.page.com/newEntry` `**POST-DATA:** ?entryValues&token=value`
+> The first login will send username and hashed password. The server will return an TOKEN, which is saved in backend and frontend (cookie) as well. With every further request, which is submitted by the user, the TOKEN will be in the request as well as `& token=value`. The backend will check the frontend TOKEN with the backend TOKEN. If they are the same, the backend knows, which user is currently logged in. E.g.: `www.page.com/newEntry` `**POST-DATA:** ?entryValues&token=value`
 
 **register / setUser**
 
