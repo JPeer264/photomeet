@@ -16,10 +16,10 @@ img returns the filename of the picture with the most likes, if there is no entr
 
 ```json
 {
-	"ID": "",
+	"id": "",
 	"name": "",
 	"img": "filename",
-	"description": "", 
+	"desc": "", 
 	"howManyUploads": ""
 }
 ```
@@ -52,22 +52,23 @@ img returns the filename of the picture with the most likes, if there is no entr
 
 ### entry
 
-**getEntrys**
+**getEntries**
 
 `www.page.com/challenge/challengeType/challengeID`
 
-Get entries of a specific challenge
+Get entries of a specific challenge, returns false if there are no entries
+challengeType will be ignored from backend because the id is already unique
 
 ```json
 {
-	"ID": "",
+	"id": "",
 	"category": "monthly/weekly",
 	"name": "",
 	"img": "filename",
-	"description": "",
-	"Username/Uploader": "",
-	"Userpic": "filename",
-	"Likes": ""
+	"desc": "",
+	"userName": "",
+	"userPic": "filename",
+	"likes": ""
 }
 ```
 
@@ -79,14 +80,14 @@ Get entries of a specific challenge
 
 ```json
 {
-	"ID": "",
+	"id": "",
 	"category": "monthly/weekly",
 	"name": "",
 	"img": "filename",
-	"description": "",
-	"Username/Uploader": "",
-	"Userpic": "filename",
-	"Likes": ""
+	"desc": "",
+	"userName": "",
+	"userPic": "filename",
+	"likes": ""
 	"vielleicht gibts noch geile zusätze sonst wärs schwachsinnig eine eigene Funktion im Backend zu machen"
 }
 ```
@@ -97,17 +98,15 @@ Get entries of a specific challenge
 
 ```json
 {
-	"ID": "",
-	"Username": "",
-	"img": "filename",
-	"description": "",
-	"basicInformation": {
-		"prename": "",
-		"lastname": "",
-		"birthday": "timestamp",
-		"city": "",
-		"alles was dir noch einfällt": ""
-	},
+	"id": "",
+	"name": "",
+	"userPic": "filename",
+	"desc": "",
+	"prename": "",
+	"lastname": "",
+	"birthday": "timestamp",
+	"city": "",
+	"alles was dir noch einfällt": ""
 	"biography": ""
 }
 ```
@@ -123,17 +122,15 @@ Get entries of a specific challenge
 
 > **required**: & username=value or email=value & password=value.
 
-`www.page.com/login?username=value&password=value`
-or
 `www.page.com/login?email=value&password=value`
 
 _returns:_
 ```json
 {
-	"OAUTH": "e72e16c7e42f292c6912e7710c838347ae178b4a"
+	"token": "e72e16c7e42f292c6912e7710c838347ae178b4a"
 }
 ```
-> The first login will send username and hashed password. The server will return an TOKEN, which is saved in backend and frontend (cookie) as well. With every further request, which is submitted by the user, the TOKEN will be in the request as well as `& token=value`. The backend will check the frontend TOKEN with the backend TOKEN. If they are the same, the backend knows, which user is currently logged in. E.g.: `www.page.com/newEntry` `**POST-DATA:** ?entryValues&token=value`
+> The first login will send username and hashed password. The server will return an TOKEN, which is saved in backend and frontend (cookie) as well. With every further request, which is submitted by the user, the TOKEN will be in the request as well as a 'Authorization' header with the value 'Bearer tokenValue'. The backend will check the frontend TOKEN with the backend TOKEN. If they are the same, the backend knows, which user is currently logged in. E.g.: `www.page.com/newEntry` `**POST-DATA:** ?entryValues&token=value`
 
 **register / setUser**
 
