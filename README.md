@@ -160,6 +160,22 @@ _returns:_
 
 `POST-DATA: ?name=Simons%20cat%20in%20vienna&desc=value&username=value`
 
+### likes
+
+#### add like
+
+www.page.com/like/{entry_id}
+> **required**: Authorization: Bearer {tokenKey}
+
+adds like from user to entry
+
+#### remove like
+www.page.com/deletelike/{entry_id}
+> **required**: Authorization: Bearer {tokenKey}
+
+removes like from user
+
+
 ## 
 
 ## ToDo - OVERVIEW
