@@ -21,6 +21,7 @@ img returns the filename of the picture with the most likes, if there is no entr
 	"img": "filename",
 	"desc": "", 
 	"howManyUploads": ""
+	"end" : endOfChallengeDate
 }
 ```
 
@@ -140,15 +141,26 @@ _returns:_
 
 `POST-DATA: ?username=value&email=value&password=value&passwordProof=value`
 
+**delete User**
+> **required**: Token
+
+`www.page.com/user/delete`
+
+**delete User**
+> **required**: Token, Value to Update (Request Body)
+
+`www.page.com/user/update`
+
 ### challenge
 
 **setChallenge**
 
-> **required**: & type=month & name=Simons%20Cat & desc=Draw%20Simons%20cat%21 & username=value
+> **required**: [isWeekly (bool)], name (string), start (date), desc (string) 
 
-`www.page.com/challenge/challengeType/challengeID/new`
+isWeekly is not necessary because of the url parameter
+!! start-attribute has to be Y-m-d !!
 
-`POST-DATA: ?name=Simons%20Cat&desc=Draw%20Simons%20cat%21&username=value`
+`www.page.com/challenge/challengeType/new`
 
 ### entry
 
@@ -159,6 +171,8 @@ _returns:_
 `www.page.com/challenge/challengeType/challengeID/new`
 
 `POST-DATA: ?name=Simons%20cat%20in%20vienna&desc=value&username=value`
+
+!! Error if challenge is already expired !!
 
 ### likes
 
