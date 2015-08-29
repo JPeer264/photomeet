@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\View;
 
 class CheckForExpectedFormat
 {
@@ -15,11 +16,14 @@ class CheckForExpectedFormat
      */
     public function handle($request, Closure $next)
     {
+
         if($request->format() == 'json'){
             return $next($request);
         }else{
             abort(403, 'Wrong Accept Header');
         }
+
+
 
 
     }

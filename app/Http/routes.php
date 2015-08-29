@@ -11,22 +11,26 @@
 |
 */
 
-    Route::post('like/{entry_id}', 'LikeController@newLike')->where('entry_id', '[0-9]+');
-    Route::post('deletelike/{entry_id}', 'LikeController@removeLike')->where('entry_id', '[0-9]+');
+    Route::post('api/like/{entry_id}', ['uses' => 'LikeController@newLike', 'middleware' => 'json'])->where('entry_id', '[0-9]+');
+    Route::post('api/deletelike/{entry_id}', ['uses' => 'LikeController@removeLike', 'middleware' => 'json'])->where('entry_id', '[0-9]+');
 
-    Route::post('login', 'TokenAuthController@authenticate');
-    Route::post('user/new', 'TokenAuthController@register');
-    Route::post('user/delete', 'UserController@deleteUser');
-    Route::post('user/update', 'UserController@updateUser');
+    Route::post('api/login', ['uses' => 'TokenAuthController@authenticate', 'middleware' => 'json']);
+    Route::post('api/user/new', ['uses' => 'TokenAuthController@register', 'middleware' => 'json']);
+    Route::post('api/user/delete', ['uses' => 'UserController@deleteUser', 'middleware' => 'json']);
+    Route::post('api/user/update', ['uses' => 'UserController@updateUser', 'middleware' => 'json']);
 
-    Route::post('challenge/{challengeType}/{challenge_id}/new', 'EntryController@newEntry')->where('challenge_id', '[0-9]+');
-    Route::post('challenge/{challengeType}/new', 'ChallengeController@newChallenge');
+    Route::post('api/challenge/{challengeType}/{challenge_id}/new', ['uses' =>'EntryController@newEntry', 'middleware' => 'json'])->where('challenge_id', '[0-9]+');
+    Route::post('api/challenge/{challengeType}/new', ['uses' => 'ChallengeController@newChallenge', 'middleware' => 'json']);
 
-    Route::get('challenge/{challengeType}/{id}', 'ChallengeController@getEntries')->where('id', '[0-9]+');
+    Route::get('api/challenge/{challengeType}/{id}', ['uses' => 'ChallengeController@getEntries', 'middleware' => 'json'])->where('id', '[0-9]+');
 
-    Route::get('challenge/{challengeType}/{challenge_id}/{entry_id}', 'EntryController@getDetails')->where(['challenge_id' => '[0-9]+', 'entry_id' => '[0-9]+']);
+    Route::get('api/challenge/{challengeType}/{challenge_id}/{entry_id}', ['uses' => 'EntryController@getDetails', 'middleware' => 'json'])->where(['challenge_id' => '[0-9]+', 'entry_id' => '[0-9]+']);
 
-    Route::get('challenge/{challengeType}', 'ChallengeController@getSpecific');
+    Route::get('api/challenge/{challengeType}', ['uses' => 'ChallengeController@getSpecific', 'middleware' => 'json']);
 
-    Route::get('{name}', 'UserController@getDetails');
+    Route::get('api/{name}', ['uses' => 'UserController@getDetails', 'middleware' => 'json']);
 
+    Route::any('{all}', function(){
+        View::addExtension('html', 'php');
+        return view('index');
+    })->where('all', '.*');
