@@ -10,7 +10,7 @@
 
 **getSpecificChallenge**
 
-`www.page.com/challenge/challengeType `
+`www.page.com/api/challenge/challengeType `
 
 img returns the filename of the picture with the most likes, if there is no entry it returns false
 
@@ -55,7 +55,7 @@ img returns the filename of the picture with the most likes, if there is no entr
 
 **getEntries**
 
-`www.page.com/challenge/challengeType/challengeID`
+`www.page.com/api/challenge/challengeType/challengeID`
 
 Get entries of a specific challenge, returns false if there are no entries
 challengeType will be ignored from backend because the id is already unique
@@ -77,7 +77,7 @@ challengeType will be ignored from backend because the id is already unique
 
 > get specific entry with an entry ID at the end
 
-`www.page.com/challenge/challengeType/challengeID/entryID` 
+`www.page.com/api/challenge/challengeType/challengeID/entryID` 
 
 ```json
 {
@@ -95,7 +95,7 @@ challengeType will be ignored from backend because the id is already unique
 
 **getUserDetail**
 
-`www.page.com/username?token=value`
+`www.page.com/api/username?token=value`
 
 ```json
 {
@@ -123,7 +123,7 @@ challengeType will be ignored from backend because the id is already unique
 
 > **required**: & username=value or email=value & password=value.
 
-`www.page.com/login?email=value&password=value`
+`www.page.com/api/login?email=value&password=value`
 
 _returns:_
 ```json
@@ -137,19 +137,19 @@ _returns:_
 
 > **required**: & username=value & email=value & password=value & passwordProof=value 
 
-`www.page.com/user/new`
+`www.page.com/api/user/new`
 
 `POST-DATA: ?username=value&email=value&password=value&passwordProof=value`
 
 **delete User**
 > **required**: Token
 
-`www.page.com/user/delete`
+`www.page.com/api/user/delete`
 
 **delete User**
 > **required**: Token, Value to Update (Request Body)
 
-`www.page.com/user/update`
+`www.page.com/api/user/update`
 
 ### challenge
 
@@ -160,7 +160,7 @@ _returns:_
 isWeekly is not necessary because of the url parameter
 !! start-attribute has to be Y-m-d !!
 
-`www.page.com/challenge/challengeType/new`
+`www.page.com/api/challenge/challengeType/new`
 
 ### entry
 
@@ -168,7 +168,7 @@ isWeekly is not necessary because of the url parameter
 
 > **required**: & name=Simons%20cat%20in%20vienna & desc=value & username=value
 
-`www.page.com/challenge/challengeType/challengeID/new`
+`www.page.com/api/challenge/challengeType/challengeID/new`
 
 `POST-DATA: ?name=Simons%20cat%20in%20vienna&desc=value&username=value`
 
@@ -178,13 +178,13 @@ isWeekly is not necessary because of the url parameter
 
 #### add like
 
-www.page.com/like/{entry_id}
+www.page.com/api/like/{entry_id}
 > **required**: Authorization: Bearer {tokenKey}
 
 adds like from user to entry
 
 #### remove like
-www.page.com/deletelike/{entry_id}
+www.page.com/api/deletelike/{entry_id}
 > **required**: Authorization: Bearer {tokenKey}
 
 removes like from user
@@ -198,12 +198,12 @@ removes like from user
 
 | Done | PARAM | url                                  | Description 
 | :---:| :---: | ------------------------             | --- 
-| :x:  | GET   | /challenge/challengeType             | get all challenges _challengeType = month, day, week,..._
-| :x:  | GET   | /challenge/filter?type[]=month       | filters all challenges into Popular, Most Uploads, etc., see above
-| :x:  | GET   | /challenge/challengeType/challengeID | get all entrys from e.g.: /challenge/monthly/244225
-| :x:  | GET   | /challenge/challengeType/challengeID/entryID | get specific entry from challenge. E.g.: /challenge/monthly/244225/412423
-| :x:  | GET   | /Username                            | returns all userinformation
-| :x:  | POST  | /login?username=value&password=value | OTOKEN FTW ! :bowtie:
-| :x:  | POST  | /user?username=value&email=value&password=value&passwordProof=value | add new user
-| :x:  | POST  | /challenge/challengeType/challengeID?name=value&desc=value&username=value | add new entry
-| :x:  | POST  | /challenge/challengeType?name=value&username=value | add new challenge
+| :x:  | GET   | /api/challenge/challengeType             | get all challenges _challengeType = month, day, week,..._
+| :x:  | GET   | /api/challenge/filter?type[]=month       | filters all challenges into Popular, Most Uploads, etc., see above
+| :x:  | GET   | /api/challenge/challengeType/challengeID | get all entrys from e.g.: /challenge/monthly/244225
+| :x:  | GET   | /api/challenge/challengeType/challengeID/entryID | get specific entry from challenge. E.g.: /challenge/monthly/244225/412423
+| :x:  | GET   | /api/Username                            | returns all userinformation
+| :x:  | POST  | /api/login?username=value&password=value | OTOKEN FTW ! :bowtie:
+| :x:  | POST  | /api/user?username=value&email=value&password=value&passwordProof=value | add new user
+| :x:  | POST  | /api/challenge/challengeType/challengeID?name=value&desc=value&username=value | add new entry
+| :x:  | POST  | /api/challenge/challengeType?name=value&username=value | add new challenge
