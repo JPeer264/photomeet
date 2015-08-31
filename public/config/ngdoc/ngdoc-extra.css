@@ -1,0 +1,10 @@
+/**
+ * we need this file to prevent some problems with our styles integrated in ngdoc
+ */
+
+/**
+ * prevt links to serviceProvider to be covered by the main navigation links
+ */
+.form-search > ul.nav > li > a {
+    position: initial;
+}

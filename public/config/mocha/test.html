@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Example Mocha Test</title>
+    <link rel="stylesheet" href="css/mocha.css" type="text/css" charset="utf-8" />
+</head>
+<body>
+    <!-- Required for browser reporter -->
+    <div id="mocha"></div>
+
+
+
+    <!-- mocha -->
+    <script src="js/mocha.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        // This will be overridden by mocha-helper if you run with grunt
+        mocha.setup('bdd');
+    </script>
+
+    <!-- Include your assertion lib of choice -->
+    <script src="js/should.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../node_modules/chai/chai.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+        // Setup chai
+        var should = window.Should;
+    </script>
+
+    <!-- insert dependencies here -->
+
+    <script src="../assets/js/vendor.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../bower_components/angular-mocks/angular-mocks.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../assets/js/templates.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/json.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- Include anything you want to test -->
+    <script src="js/tests.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- run mocha -->
+    <script type="text/javascript" charset="utf-8">
+      // Only tests run in real browser, injected script run if options.run == true
+      if (navigator.userAgent.indexOf('PhantomJS') < 0) {
+        mocha.run();
+      }
+    </script>
+</body>
+</html>
