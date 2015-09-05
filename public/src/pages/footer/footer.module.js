@@ -3,4 +3,4 @@
 *
 * Description
 */
-angular.module('pages.footer', ['cmps']);
+angular.module('pages.footer', []);

@@ -1,0 +1,29 @@
+/**
+* joinDirective Module
+*
+* Description
+*/
+angular
+	.module('cmps.join', [])
+	.directive('join', [function(){
+	// Runs during compile
+	return {
+		// name: '',
+		// priority: 1,
+		// terminal: true,
+		// scope: {}, // {} = isolate, true = child, false/undefined = no change
+		// controller: challenges,
+		// require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+		restrict: 'AE', // E = Element, A = Attribute, C = Class, M = Comment
+		// template: '<div>neeeew</div>',
+		templateUrl: 'components/jointhecommunity/jointhecommunity.html',
+		replace: true,
+		// transclude: true,
+		// compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+		link: function($scope, iElm, iAttrs, controller) {
+			iElm.bind("click", function() {
+				window.open("/register","_self")
+			});
+		}
+	};
+}]);

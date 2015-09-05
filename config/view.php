@@ -15,7 +15,7 @@ return [
 
     'paths' => [
         realpath(base_path('resources/views')),
-        realpath(base_path('public/dist'))
+        realpath(base_path('public/tmp'))
     ],
 
     /*

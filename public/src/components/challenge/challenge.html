@@ -1,3 +1,27 @@
-<div class="challenge">
-	This is a challenge.
+<div>
+	<div class="challenge">
+		<a href="/challenge/{{ challenge.challengeType }}/{{ challenge.id }}">
+			<div class="img-cont">
+				<img src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2012/9/26/1348685374708/Southern-Ocean-011.jpg"/>
+			</div>
+			<div class="data-cont">
+				<div class="desc">
+
+					<p>{{ challenge.desc }}</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="uploads">
+							<p>{{ challenge.howManyUploads }} uploads</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="likes">
+							<p>4 likes</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>	
 </div>

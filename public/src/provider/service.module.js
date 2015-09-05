@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('services', [
-    	'services.challenge'	
+    	'services.challenge',
+    	'services.auth'
     ]);
 
 })(window, window.angular);

@@ -4,7 +4,7 @@ angular.module('PicStar', [
     'PicStar.templates',
     'pages',
     'services',
-    'cmps'
+    'cmps',
 ]);
 angular
     .module('PicStar')
@@ -46,20 +46,80 @@ angular
                         }
                     }
                 })
-                .state('challenge', {
+                .state('allChallenges', {
                     url: '/challenge',
                     views: {
                         header: {
                             templateUrl: headerTemplateURL,
                             controller: headerController
                         },
+                        // main: {
+                        //     templateUrl: 'pages/challenges/challenges.html',
+                        //     controller: 'challengeController'
+                        // },
+                        footer: {
+                            templateUrl: footerTemplateURL,
+                            controller: footerController
+                        }
+                    }
+                })
+                .state('challengeTypes', {
+                    url: '/challenge/:challengeType',
+                    views: {
+                        header: {
+                            templateUrl: headerTemplateURL,
+                            controller: headerController
+                        },
                         main: {
-                            templateUrl: 'pages/somePage/somePage.html',
-                            controller: 'someController'
+                            templateUrl: 'pages/challenges/challenges.html',
+                            controller: 'challengeController'
                         },
                         footer: {
                             templateUrl: footerTemplateURL,
                             controller: footerController
+                        }
+                    }
+                })
+                .state('challenge', {
+                    url: '/challenge/:challengeType/{challengeID}',
+                    views: {
+                        header: {
+                            templateUrl: headerTemplateURL,
+                            controller: headerController
+                        },
+                        main: {
+                            templateUrl: 'pages/oneChallenge/oneChallenge.html',
+                            controller: 'oneChallengeCtrl'
+                        },
+                        footer: {
+                            templateUrl: footerTemplateURL,
+                            controller: footerController
+                        }
+                    }
+                })
+                .state('login', {
+                    url: '/login',
+                    views: {
+                        header: {
+                            templateUrl: headerTemplateURL,
+                            controller: headerController
+                        },
+                        main: {
+                            templateUrl: 'pages/login/login.html',
+                            controller: 'loginCtrl'
+                        },
+                        footer: {
+                            templateUrl: footerTemplateURL,
+                            controller: footerController
+                        }
+                    }
+                })
+                .state('profile', {
+                    url: '/{profileID}',
+                    views: {
+                        header: {
+                            templateUrl: headerTemplateURL,
+                            controller: headerController
                         }
                     }
                 });

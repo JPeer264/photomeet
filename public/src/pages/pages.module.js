@@ -2,10 +2,12 @@
     'use strict';
 
     angular.module('pages', [
-        'pages.somePage',
         'pages.index',
         'pages.header',
-        'pages.footer'
+        'pages.footer',
+        'pages.challenges',
+        'pages.oneChallenge',
+        'pages.login'
     ]);
 
 })(window, window.angular);

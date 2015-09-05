@@ -26,6 +26,7 @@
     "lodash": "^2.4.1"
   },
   "devDependencies": {
-    "angular-mocks": "git+https://source.dmc.de/gitlab/bower/angular-mocks.git#v1.4.3"
+    "angular-mocks": "git+https://source.dmc.de/gitlab/bower/angular-mocks.git#v1.4.3",
+    "angular-cookies": "~1.4.5"
   }
 }

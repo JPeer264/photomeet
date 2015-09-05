@@ -4,11 +4,10 @@ angular
 
 footerController.$inject = [
     '$scope',
-    'challenges'
+    'challengeService'
 ];
 
 function footerController($scope, challenges) {
 
-    $scope.test = challenges;
-
+    
 }

@@ -3,4 +3,4 @@
 *
 * Description
 */
-angular.module('pages.header', []);
+angular.module('pages.header', ['cmps']);

@@ -5,13 +5,24 @@
 */
 angular
 	.module('services.challenge')
-	.service('challenges', ['$rootScope', '$http', function($rootScope, $http){
+	.service('challengeService', ['$rootScope', '$http', function($rootScope, $http){
 
-		var promise = $http.get('http://picstar.dev/jn');
-		var result;
-		promise.then(function(data) {
-			data = result;
-		});
+		this.getChallenges = function(challengeType, challengeNumber) {
 
-		return $rootScope;
+			var urlAdding = challengeNumber === undefined ? '' : '/' + challengeNumber
+
+			var promise = $http({
+				method: 'GET',
+				url: 'http://picstar.dev/api/challenge/' + challengeType + urlAdding,
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				}
+			});
+			return promise;
+		}
+
+
+
+
 }]);

@@ -1,3 +1,10 @@
+$maincolor: #7bdbec;
+$bordercolor: #c9c9c9;
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
 body, html {
 	width: 100%;
 	height: 100%;
@@ -5,9 +12,216 @@ body, html {
 	padding: 0;
 }
 
+img {
+    max-width: 100%;
+}
+
+// header
 header {
 	width: 100%;
-	height: auto;
-	background: green;
+	height: 50px;
+	background: rgb(123, 219, 236);
 	padding: 10px;
 }
+
+footer {
+    width: 100%;
+    color: grey;
+    background: $maincolor;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+input {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+
+}
+
+input[type='submit'] {
+    background: #7bdbec;
+    border: 0;
+    border-radius: 5px;
+    margin: 10px 0;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+#statusbar {
+    display: inline-block;
+    float: right;
+    line-height: 30px;
+    color: white;
+    
+    a {
+        color: white;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+}
+
+#logo {
+    display: inline-block;
+  
+    img {
+        height: 30px
+    }
+
+}
+
+#challenge-slider {
+    background-color: $maincolor;
+    padding: 10px;
+    position: relative;
+
+    #images {
+        position: absolute;
+        z-index: 0;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        white-space: nowrap;
+        transition: left 1s;
+        transition-timing-function: linear;
+        pointer-events: none;
+
+        img {
+            height: 100%;
+            opacity: 0.3;
+        }
+    }
+  
+    h1 {
+        color: white;
+        text-align: center;
+        font-weight: 100;
+        margin: 20px;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.join {
+    background: white;
+    position: relative;
+    border: 2px solid $maincolor;  
+    border-radius: 5px;
+    margin: 20px;
+    width: 230px;
+    margin: 0 auto 20px;
+    padding: 2px 25px;
+    color: $maincolor;
+    text-align: center;
+    box-shadow: 0 0 0 1px white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.challenge {
+    background: white;
+    margin-top: 10px;
+    border: 1px solid $bordercolor;
+
+    .img-cont {    
+        img {
+            width: 100%
+        }
+    }
+
+    .data-cont {   
+        padding: 5px;
+
+        p {
+            padding: 3px;
+            margin: 0;
+        }
+
+        .desc {
+            color: grey;
+            border-bottom: 1px solid $bordercolor;
+        } 
+    }
+}
+// header END
+
+// challenges
+
+.main-challenge-container {
+    padding: 5px;
+    margin: 5px 5px 5px 35px;
+    border: 1px solid $maincolor;
+    background-color: white;
+    position: relative;
+
+        h2 {
+            margin: 0 0 15px;
+            font-weight: 400;
+            font-size: 1.5em;
+            text-transform: uppercase;
+            color: $maincolor;
+
+        span {
+            font-weight: 600;
+        }
+    }
+}
+
+.main-challenge-container::after {
+    content: "";
+    border-style: solid;
+    border-width: 35px 30px 0 0;
+    border-color: transparent $maincolor transparent transparent;
+    position: absolute;
+    left: -30px;
+    top: 0;
+    z-index: 1;
+}
+
+// challenges END
+
+// loginform
+
+.popup {
+    position: absolute;
+    background: white;
+    border: 1px solid #7bdbec;
+    width: 200px;
+    height: auto;
+    top: 70px;
+    right: 10px;
+    z-index: 1;
+
+    h4 {
+        text-align:center;
+        margin: 0;
+        padding : 5px;
+        background-color: #7bdbec;
+        color: white;
+    }
+
+    .login-form {
+        padding: 5px;
+    }
+
+}
+
+.popup::before {
+    content: "";
+    border-style: solid;
+    border-width: 0 15px 20px 15px;
+    border-color: transparent transparent #7bdbee transparent;
+    position: absolute;
+    right: 20%;
+    top: -20px;
+    z-index: 1;
+}
+
+// loginform END
+

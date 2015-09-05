@@ -2,8 +2,24 @@
 	<div class="container">
 		<div id="logo">
 			<a href="/">
-				<img src="http://shirta.de/media/catalog/product/cache/1/small_image/295x295/9df78eab33525d08d6e5fb8d27136e95/p/i/pic-star-1-f1-d75508692.png" alt="" width="50">
+				<img src="/tmp/assets/img/picstar/logo.png" alt="">
 			</a>
 		</div>
+		<div id="statusbar">
+			<div ng-if="isLoggedIn()">
+				<a href="/signup">Sign up</a> | 
+				<a href="#" ng-click="popupLogin(true)">Login</a>
+				<div login ng-if="clicked" class="popup">
+				</div>
+			</div>
+			<!-- <div loggedheader></div> -->
+		</div>
 	</div>
-</header>		
+</header>
+<div id="challenge-slider">
+	<div id="images">
+		<img src="{{ image.src }}" alt="" ng-repeat="image in images">
+	</div>
+  <h1>Get Famous or Die Tryin'</h1>
+  <div ng-if="isLoggedIn()" join></div>
+</div>
