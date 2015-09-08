@@ -22,6 +22,9 @@
     Route::post('api/challenge/{challengeType}/{challenge_id}/new', ['uses' =>'EntryController@newEntry', 'middleware' => 'json'])->where('challenge_id', '[0-9]+');
     Route::post('api/challenge/{challengeType}/new', ['uses' => 'ChallengeController@newChallenge', 'middleware' => 'json']);
 
+    Route::post('api/token', ['uses' => 'TokenAuthController@checkToken', 'middleware' => 'json']);
+    Route::post('api/refresh', ['uses' => 'TokenAuthController@refreshToken', 'middleware' => 'json']);
+
     Route::get('api/challenge/{challengeType}/{id}', ['uses' => 'ChallengeController@getEntries', 'middleware' => 'json'])->where('id', '[0-9]+');
 
     Route::get('api/challenge/{challengeType}/{challenge_id}/{entry_id}', ['uses' => 'EntryController@getDetails', 'middleware' => 'json'])->where(['challenge_id' => '[0-9]+', 'entry_id' => '[0-9]+']);

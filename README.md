@@ -57,19 +57,43 @@ img returns the filename of the picture with the most likes, if there is no entr
 
 `www.page.com/api/challenge/challengeType/challengeID`
 
-Get entries of a specific challenge, returns false if there are no entries
-challengeType will be ignored from backend because the id is already unique
+**UPDATE!!!**
+Will return the challenge as an object with the attribute 'entries' which will contain all entries for this challenge.
+
 
 ```json
 {
-	"id": "",
-	"category": "monthly/weekly",
-	"name": "",
-	"img": "filename",
-	"desc": "",
-	"userName": "",
-	"userPic": "filename",
-	"likes": ""
+  "id": 1,
+  "isWeekly": 1,
+  "name": "TestChallenge",
+  "desc": "TestDescription",
+  "start": "2015-03-14 09:51:13",
+  "created_at": "2015-08-19 09:51:13",
+  "updated_at": "2015-08-19 09:51:13",
+  "entries": [
+    {
+      "id": 1,
+      "img": "img",
+      "name": "name",
+      "desc": "desc\n",
+      "user_id": 1,
+      "userPic": "",
+      "userName": null,
+      "category": "weekly",
+      "likes": 0
+    },
+    {
+      "id": 2,
+      "img": "img2",
+      "name": "name2",
+      "desc": "desc2",
+      "user_id": 1,
+      "userPic": "",
+      "userName": null,
+      "category": "weekly",
+      "likes": 0
+    }
+  ]
 }
 ```
 
@@ -150,6 +174,22 @@ _returns:_
 > **required**: Token, Value to Update (Request Body)
 
 `www.page.com/api/user/update`
+
+### Token
+
+**CheckToken**
+
+> **required**: Token
+if token is fine it will be returned, exceptions if it is expired or didn't exists, etc.
+
+`www.page.com/api/token'
+
+**refreshToken**
+
+> **required**: Token
+if token is fine, it will generate a new one with a fresh expire date.
+
+`www.page.com/api/refresh`
 
 ### challenge
 

@@ -15,38 +15,20 @@ use Illuminate\Support\Arr;
 class ChallengeController extends Controller
 {
 
+    /**
+     * returns challenges. with some additional information, that have already started, ordered desc by start date.
+     *
+     * @param $challengeType
+     * @return string
+     */
     public function getSpecific($challengeType){
 
-        //some dummy test data for frontend development without a db connection
-        //APP_DATAMODE is located in the .env file
-        if(env('APP_DATAMODE') == "dummy"){
-
-            $entries = array();
-
-            for($i=1;$i<=10;$i++){
-                $dummy = (object)array(
-                    'id' => $i,
-                    'name' => 'Dummy Entry #'.$i,
-                    'category' => 'weekly',
-                    'img' => 'filename',
-                    'desc' => 'This is a dummy description',
-                    'userName' => 'Simon',
-                    'userPic' => 'simon.jpg',
-                    'likes' => 10*$i
-                );
-                array_push($entries, $dummy);
-            }
-
-            return $entries;
-
-        } else{
-            //the real deal
             $type = $challengeType;
 
             if($type == "monthly"){
-                $challenges = Challenge::where('isWeekly', '=', 0)->started()->get();
+                $challenges = Challenge::where('isWeekly', '=', 0)->started()->orderBy('start', 'DESC')->get();
             }else if($type == 'weekly'){
-                $challenges = Challenge::where('isWeekly', '=', 1)->started()->get();
+                $challenges = Challenge::where('isWeekly', '=', 1)->started()->orderBy('start', 'DESC')->get();
             }else{
                 return 'wrong challenge type';
             }
@@ -62,55 +44,34 @@ class ChallengeController extends Controller
 
             return $challenges;
 
-        }
+
     }
 
     public function getEntries($challengeType, $challenge_id)
     {
 
-        if(env('APP_DATAMODE') == "dummy"){
+        $challenge = Challenge::find($challenge_id);
+        $entries = $challenge->entries;
 
-            $entries = array();
+        if ($entries) {
+            foreach ($entries as $entry) {
+                $user = $entry->user;
 
-            for($i=1;$i<=10;$i++){
-                $dummy = (object)array(
-                    'id' => $i,
-                    'name' => 'Dummy Entry #'.$i,
-                    'category' => 'weekly',
-                    'img' => 'filename',
-                    'desc' => 'This is a dummy description',
-                    'userName' => 'Simon',
-                    'userPic' => 'simon.jpg',
-                    'likes' => 10*$i
-                );
-                array_push($entries, $dummy);
+                unset($entry->challenge_id);
+                unset($entry->created_at);
+                unset($entry->updated_at);
+                unset($entry->user);
+                $entry->userPic = $user->userPic;
+                $entry->userName = $user->name;
+                $entry->category = ($challenge->isWeekly) ? 'weekly' : 'monthly';
+                $entry->likes = $entry->likesCount();
             }
 
-            return $entries;
-
+            return $challenge;
         } else {
-            $challenge = Challenge::find($challenge_id);
-            $entries = $challenge->entries;
-
-            if ($entries) {
-                foreach ($entries as $entry) {
-                    $user = $entry->user;
-
-                    unset($entry->challenge_id);
-                    unset($entry->created_at);
-                    unset($entry->updated_at);
-                    unset($entry->user);
-                    $entry->userPic = $user->userPic;
-                    $entry->userName = $user->name;
-                    $entry->category = ($challenge->isWeekly) ? 'weekly' : 'monthly';
-                    $entry->likes = $entry->likesCount();
-                }
-
-                return $entries;
-            } else {
-                return false;
-            }
+            return false;
         }
+
 
     }
 

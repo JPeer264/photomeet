@@ -30,6 +30,53 @@ class TokenAuthController extends Controller
         return response()->json(compact('token'));
     }
 
+    /**
+     * checks the token, returns token if everything is fine.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkToken(){
+        try{
+            if(JWTAuth::parseToken()->authenticate()){
+                return JWTAuth::getToken();
+            }
+        }catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+        }
+
+
+    /**
+     * generates new Token with new expire date
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refreshToken()
+    {
+        try{
+            if(JWTAuth::parseToken()->authenticate()){
+                return JWTAuth::refresh();
+            }
+        }catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json(['token_expired'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+    }
+
+
     public function getAuthenticatedUser()
     {
         try {
