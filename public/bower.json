@@ -1,10 +1,9 @@
 {
-  "name": "UBT",
+  "name": "PicStar",
   "version": "1.0.0",
   "authors": [
-    "Julian Kern <julian.kern@dmc.de>"
+    "Jan Peer Stöcklmaie"
   ],
-  "homepage": "www.dmc.de",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -23,10 +22,12 @@
     "angular-touch": "^1.4.3",
     "angular-local-storage": "^0.2.2",
     "angular-animate": "^1.4.3",
+    "ng-file-upload": "~7.2.1",
     "lodash": "^2.4.1"
   },
   "devDependencies": {
     "angular-mocks": "git+https://source.dmc.de/gitlab/bower/angular-mocks.git#v1.4.3",
     "angular-cookies": "~1.4.5"
-  }
+  },
+  "license": "MIT"
 }

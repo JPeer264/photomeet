@@ -6,20 +6,19 @@
 			</a>
 		</div>
 		<div id="statusbar">
-			<div ng-if="isLoggedIn()">
-				<a href="/signup">Sign up</a> | 
-				<a href="#" ng-click="popupLogin(true)">Login</a>
-				<div login ng-if="clicked" class="popup">
+			<div ng-if="!isLoggedIn">
+				<a href="/register">Sign up</a> | 
+				<a href="#" ng-click="showPopupLogin = !showPopupLogin">Login</a>
+				<div login ng-show="showPopupLogin" class="popup">
 				</div>
 			</div>
-			<!-- <div loggedheader></div> -->
+			<div ng-if="isLoggedIn">
+				<a href="#">Hello {{ username }}</a> | 
+				<a href="#" ng-click="logout()">Logout</a>
+			</div>
 		</div>
 	</div>
 </header>
-<div id="challenge-slider">
-	<div id="images">
-		<img src="{{ image.src }}" alt="" ng-repeat="image in images">
-	</div>
-  <h1>Get Famous or Die Tryin'</h1>
-  <div ng-if="isLoggedIn()" join></div>
-</div>
+
+<div ng-if="!isLoggedIn" join></div>
+<div ng-if="isLoggedIn" id="bar"></div>

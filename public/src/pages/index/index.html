@@ -1,16 +1,16 @@
 <div class="challenges-container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="main-challenge-container challenge-current">
 				<h2><span>monthly</span> challenge</h2>
-				<div challenge ng-repeat="challenge in lastMonthly" challenge-type="monthly"></div>
+				<div challenge ng-repeat="challenge in lastMonthly" content="true"></div>
 			</div>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<div class="main-challenge-container challenge-list">
 				<h2><span>Previous</span> monthly challenge</h2>
 				<div class="row">
-					<div challenge class="col-md-4" ng-repeat="challenge in latestMonthly" challenge-type="monthly"></div>
+					<div challenge class="col-md-6" ng-repeat="challenge in latestMonthly"></div>
 				</div>
 			</div>
 		</div>
@@ -19,22 +19,21 @@
 		
 <div class="challenges-container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="main-challenge-container challenge-current">
 				<h2><span>weekly</span> challenge</h2>
-				<div challenge ng-repeat="challenge in lastWeekly"  challenge-type="weekly"></div>
+				<div challenge ng-repeat="challenge in lastWeekly" content="true"></div>
 			</div>
 		</div>
-		<div class="col-md-8">
+		<div class="col-md-6">
 			<div class="main-challenge-container challenge-list">
 				<h2><span>Previous</span> weekly challenge</h2>
 				<div class="row">
-					<div challenge class="col-md-4" ng-repeat="challenge in latestWeekly" challenge-type="weekly"></div>
+					<div challenge class="col-md-6" ng-repeat="challenge in latestWeekly"></div>
 				</div>
 			</div>
 		</div>
 	</div>
-		
 </div>
 
 <!-- <a href="/challenges/{{  }}"></a> -->

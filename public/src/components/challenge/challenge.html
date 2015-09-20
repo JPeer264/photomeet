@@ -6,10 +6,9 @@
 			</div>
 			<div class="data-cont">
 				<div class="desc">
-
-					<p>{{ challenge.desc }}</p>
+					<p>{{ challenge.name }}</p>
 				</div>
-				<div class="row">
+				<div class="row" ng-if="showContent">
 					<div class="col-md-6">
 						<div class="uploads">
 							<p>{{ challenge.howManyUploads }} uploads</p>
@@ -17,7 +16,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="likes">
-							<p>4 likes</p>
+							<p>(not) Over</p>
 						</div>
 					</div>
 				</div>

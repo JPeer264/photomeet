@@ -7,6 +7,12 @@ angular
 	.module('services.challenge')
 	.service('challengeService', ['$rootScope', '$http', function($rootScope, $http){
 
+		/**
+		 * @param challengeType   {String}
+		 * @param challengeNumber {Integer}
+		 *
+		 * @return promise
+		 */
 		this.getChallenges = function(challengeType, challengeNumber) {
 
 			var urlAdding = challengeNumber === undefined ? '' : '/' + challengeNumber
@@ -20,7 +26,14 @@ angular
 				}
 			});
 			return promise;
-		}
+		};
+
+		/**
+		 * Function which uploads new challenges
+		 */
+		this.upload = function() {
+
+		};
 
 
 

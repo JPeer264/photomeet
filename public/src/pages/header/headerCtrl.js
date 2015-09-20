@@ -8,23 +8,9 @@ headerController.$inject = [
 ];
 
 function headerController($scope, authService) {
-
-    /**
-     * Returns if the user is logged in or not
-     *
-     * @service authService
-     *
-     * @return {Boolean}
-     */
-    $scope.isLoggedIn = function() {
-        return authService.isLoggedIn();
-    }
-
+    
     // todo get all images from /uploads/weekly und /uploads/monthly
     $scope.images = [
-        {
-            src: 'http://static1.squarespace.com/static/5577a6d8e4b0d550f9064842/558fa2dee4b0d09526c72322/55aac4ede4b02b4125d8eb01/1437254975590/%3Fformat%3D1500w'
-        },
         {
             src: 'http://www.doliwa-naturfoto.de/Bilder-Galerie/Tiere/Katzen/Katze4/wd_2101.jpg'
         },
@@ -69,8 +55,6 @@ function headerController($scope, authService) {
         }
     ];
 
-
-
     /**
      * Change the $scope clicked
      *
@@ -78,7 +62,7 @@ function headerController($scope, authService) {
      */
     $scope.popupLogin = function(boo) {
         $scope.clicked = boo;
-    }
+    };
     $scope.clicked = false;
 
 
@@ -93,7 +77,7 @@ function headerController($scope, authService) {
         setInterval(function() {
             
             leftVal = leftVal - 20;
-            console.log(leftVal);
+            // console.log(leftVal);
             $('#images').css({
                 'left': leftVal
             });

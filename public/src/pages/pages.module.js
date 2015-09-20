@@ -7,7 +7,8 @@
         'pages.footer',
         'pages.challenges',
         'pages.oneChallenge',
-        'pages.login'
+        'pages.login',
+        'pages.register',
     ]);
 
 })(window, window.angular);

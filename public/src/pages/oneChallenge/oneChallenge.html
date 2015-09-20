@@ -1,12 +1,69 @@
-<div class="big-challenge-container">
+<div class="main-challenge-container">
+	<h2><span>{{ challengeType }}</span> challenge</h2>
 	<div class="row">
 		<div class="big-challenge-image col-md-5">
-			<img src="{{ challenge.img }}" alt="">
+			<div>
+				<div class="challenge">
+					<div class="img-cont">
+						<img src="http://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2012/9/26/1348685374708/Southern-Ocean-011.jpg"/>
+					</div>
+					<div class="data-cont">
+						<span>{{ challenge.name }}</span>
+					</div>
+				</div>	
+			</div>
 		</div>
 		<div class="big-challenge-data col-md-7">
-			<p>restinfo</p>
+			<h5>Description:</h5>
+			<p>{{ challenge.desc }}</p>
+
+			<h5>Deadline:</h5>
+			<p>{{ challenge.deadline }}</p>
 		</div>
 	</div>
-
+	<!-- todo just upload 1, ng-if oneUpload -->
+	<div class="upload" ng-if="isLoggedIn" ng-click="toggleUploadBox()">Upload</div>
 </div>
-{{ entrys }}
+<div id="upload-container" ng-if="isUploadShown">
+	<span class="cross" ng-click="toggleUploadBox()">x</span>
+	<form name="newEntry">
+    <div class="row">
+    	<div class="col-md-3">
+    		<input type="text" name="userName" ng-model="entry.name" placeholder="Name" size="31" required>
+    	</div>
+    	<div class="col-md-3">
+    		<input type="text" name="userDesc" ng-model="entry.desc" placeholder="Description" size="31">
+    	</div>
+		<div class="col-md-3">
+			<button type="file" ngf-select ng-model="entry.file" name="file" accept="image/*" ngf-max-size="2MB">Choose File</button>
+		</div>
+		<div class="col-md-3">
+      		<button ng-disabled="!newEntry.$valid" ng-click="saveEntry(entry, url)">Submit</button>
+		</div>
+		<img ng-show="newEntry.file.$valid" ngf-src="!entry.file.$error && entry.file" class="thumb">
+      
+		<span ng-show="entry.file.result">Upload Successful</span>
+    </div>
+  </form>
+</div>
+<img ngf-src="file" alt="">
+<div class="main-challenge-container">
+	<div ng-repeat="data in entryTypes" class="relative">
+		<div class="arrow left" ng-click="moveLeft(data)"><span>&#65513;</span></div>
+		<h2><span>{{ data.type }}</span> uploads</h2>
+		<div class="entry-container">
+			<div class="row"> 
+				<div entry="{{ entry.id }}" challengeid = "{{ entry.challengeID }}" ng-repeat="entry in data.entries | orderBy: data.orderBy" class="entry" ng-click="openEntryPopup( entry.id )"></div>
+			</div>
+		</div>
+		<div class="arrow right" ng-click="moveRight(data)"><span>&#65515;</span></div>
+	</div>
+</div>
+<div ng-if="showEntryPopup" class="entryPopup">
+	<a href="#" ng-click="closePopupEntry()">closeme</a>
+	<img src="{{ poppedupEntry.img }}" alt="">
+	<div>{{ poppedupEntry.name }}</div>
+	<div ng-if="isLoggedIn">
+		<div class="like" ng-click="like(poppedupEntry.id)">LIKE</div>
+	</div>
+</div>

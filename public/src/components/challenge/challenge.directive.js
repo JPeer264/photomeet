@@ -26,6 +26,7 @@ directive('challenge', [function(){
 		// 	}
 		// })),
 		link: function($scope, iElm, iAttrs, controller) {
+			$scope.showContent = Boolean(iAttrs.content);
 		}
 	};
 }]);

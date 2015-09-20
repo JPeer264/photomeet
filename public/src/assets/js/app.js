@@ -114,6 +114,23 @@ angular
                         }
                     }
                 })
+                .state('register', {
+                    url: '/register',
+                    views: {
+                        header: {
+                            templateUrl: headerTemplateURL,
+                            controller: headerController
+                        },
+                        main: {
+                            templateUrl: 'pages/register/register.html',
+                            controller: 'registerController'
+                        },
+                        footer: {
+                            templateUrl: footerTemplateURL,
+                            controller: footerController
+                        }
+                    }
+                })
                 .state('profile', {
                     url: '/{profileID}',
                     views: {

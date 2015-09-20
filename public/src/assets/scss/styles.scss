@@ -23,6 +23,11 @@ header {
 	background: rgb(123, 219, 236);
 	padding: 10px;
 }
+#bar {
+    height: 5px;
+    width: 100%;
+    background: lighten($maincolor, 20%);
+}
 
 footer {
     width: 100%;
@@ -37,7 +42,10 @@ input {
     display: block;
     width: 100%;
     margin: 5px 0;
+}
 
+input[type='text'] {
+    color: black !important;
 }
 
 input[type='submit'] {
@@ -124,6 +132,22 @@ input[type='submit'] {
     cursor: pointer;
 }
 
+.upload {
+    background: #7bdbec;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 5px 25px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 0 1px #7bdbec;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+
 .challenge {
     background: white;
     margin-top: 10px;
@@ -154,18 +178,18 @@ input[type='submit'] {
 // challenges
 
 .main-challenge-container {
-    padding: 5px;
-    margin: 5px 5px 5px 35px;
+    padding: 20px;
+    margin: 15px 5px 5px 35px;
     border: 1px solid $maincolor;
     background-color: white;
     position: relative;
 
-        h2 {
-            margin: 0 0 15px;
-            font-weight: 400;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            color: $maincolor;
+    h2 {
+        margin: 0 0 15px;
+        font-weight: 400;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        color: $maincolor;
 
         span {
             font-weight: 600;
@@ -184,6 +208,17 @@ input[type='submit'] {
     z-index: 1;
 }
 
+.main-challenge-container::before {
+    content: "";
+    width: 400%;
+    height: 85%;
+    background-color: lighten($bordercolor, 15%);
+    position: absolute;
+    left: -100%;
+    top: 35px;
+    z-index: -1;
+}
+
 // challenges END
 
 // loginform
@@ -198,18 +233,13 @@ input[type='submit'] {
     right: 10px;
     z-index: 1;
 
-    h4 {
-        text-align:center;
-        margin: 0;
-        padding : 5px;
-        background-color: #7bdbec;
-        color: white;
-    }
-
-    .login-form {
-        padding: 5px;
-    }
-
+    // h4 {
+    //     text-align:center;
+    //     margin: 0;
+    //     padding : 5px;
+    //     background-color: #7bdbec;
+    //     color: white;
+    // }
 }
 
 .popup::before {
@@ -223,5 +253,103 @@ input[type='submit'] {
     z-index: 1;
 }
 
+.nopopup {
+    border: 1px solid #7bdbec;
+    margin: 10px;
+}
+
+.nopopup, .popup {
+    h4 {
+        text-align:center;
+        margin: 0;
+        padding : 5px;
+        background-color: #7bdbec;
+        color: white;
+    }
+
+    .login-form {
+        padding: 5px;
+    }
+}
+
 // loginform END
 
+// upload appear
+#upload-container {
+    margin: -5px 10px 15px 40px;
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid $bordercolor;
+    border-top: 0;
+}
+// upload appear END
+
+// entry
+.entry {
+    float: none;
+    display: inline-block;
+
+    img {
+        height: 150px;
+        margin-left: 1em;
+
+        &:first-of-type(0) {
+            margin-left: 0;
+        }
+    }
+}
+
+.entry-container {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+
+    .row {
+        left: 0;
+        transition: left 1s, right 1s;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.relative {
+    position: relative;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    width: 25px;
+    border: 1px solid $maincolor;
+    line-height: 40px;
+    padding: 0 7px;
+    height: 50px;
+    background-color: white;
+    z-index: 0;
+    cursor: pointer;
+}
+
+.right {
+    right: -45px;
+    text-align: right;
+    border-radius: 0 40px 40px 0;
+    border-left: 0;
+}
+
+.left {
+    left: -45px;
+    text-align: left;
+    border-radius: 40px 0 0 40px;
+    border-right: 0;
+}
+
+.entryPopup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, .5);
+    z-index: 10;
+}

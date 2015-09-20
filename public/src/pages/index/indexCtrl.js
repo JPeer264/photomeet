@@ -4,23 +4,23 @@ angular
 
 indexController.$inject = [
 	'$scope',
-	'challengeService'
+	'challengeService',
+	'$stateParams'
 ];
 
-function indexController($scope, challengeService) {
-
+function indexController($scope, challengeService, $stateParams) {
 	challengeService.getChallenges('weekly').then(function(data) {
 
 		// append challengeType for later includes
 		for (var key of data.data) {
 			key.challengeType = "weekly";
+			key.content = false;
 		}
 
-		$scope.latestWeekly = data.data.splice(1, 6);
-
+		$scope.latestWeekly = data.data.splice(1, 4);
 		// fast workaround to get 1 element
 		var newArray = new Array();
-		newArray.push(data.data[0])
+		newArray.push(data.data[0]);
 		$scope.lastWeekly = newArray;
 		
 	});
@@ -30,18 +30,19 @@ function indexController($scope, challengeService) {
 		// append challengeType for later includes
 		for (var key of data.data) {
 			key.challengeType = "monthly";
+			key.content = false;
 		}
 
-		$scope.latestMonthly = data.data.splice(1, 5);
+		$scope.latestMonthly = data.data.splice(1, 4);
 
 		// fast workaround to get 1 element
 		var newArray = new Array();
-		newArray.push(data.data[0])
+		newArray.push(data.data[0]);
 		$scope.lastMonthly = newArray;
 
 	});
 
 	$scope.rowCounter = function(count) {
 		console.log(count);
-	}
+	};
 }
