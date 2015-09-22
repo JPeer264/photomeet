@@ -9,6 +9,7 @@
         'pages.oneChallenge',
         'pages.login',
         'pages.register',
+        'pages.profile',
     ]);
 
 })(window, window.angular);

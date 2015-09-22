@@ -137,6 +137,14 @@ angular
                         header: {
                             templateUrl: headerTemplateURL,
                             controller: headerController
+                        },
+                        main: {
+                            templateUrl: 'pages/profile/profile.html',
+                            controller: 'profileCtrl'
+                        },
+                        footer: {
+                            templateUrl: footerTemplateURL,
+                            controller: footerController
                         }
                     }
                 });

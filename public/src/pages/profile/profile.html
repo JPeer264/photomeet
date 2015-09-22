@@ -1,0 +1,43 @@
+<div class="main-challenge-container profile-container">
+	<h2><span>User</span> Profile</h2>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div>
+				<div class="profile-container-inner">
+					<div class="left">
+						<img src="" id="profilepic"></img>
+						<div id="profiledata">
+							<h3>{{ user.userName }}</h3>
+							<h4>{{ user.city }}</h4>
+						</div>
+					</div>
+					<div class="right">
+						<div class="pics">
+							<div class="infopic">
+								<img src="pic1.jpg" class="infoicon" alt="images"></img>
+							</div>
+							<div class="infopic">
+								<img src="pic2.jpg" class="infoicon" alt="likes"></img>
+							</div>
+							<div class="infopic">
+								<img src="pic3.jpg" class="infoicon" alt="awards"></img>
+							</div>
+						</div>
+						
+						<div id="numbers">
+							<div class="infonumber">{{ user.uploads }}</div>
+							<div class="infonumber">{{ user.likes }}</div>
+							<div class="infonumber">{{ user.awards }}</div>
+						</div>
+					</div>
+					<div class="clearfix" style="clear: both;">
+						<strong>Biography:</strong>
+						<div class="profiledesription">
+							{{ user.bio }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

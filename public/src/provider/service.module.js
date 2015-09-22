@@ -5,7 +5,8 @@
     	'services.challenge',
     	'services.auth',
     	'services.date',
-    	'services.entry'
+    	'services.entry',
+    	'services.user',
     ]);
 
 })(window, window.angular);
