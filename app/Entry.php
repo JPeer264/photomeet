@@ -50,7 +50,7 @@ class Entry extends Model
     public function saveFile($file){
 
         //modifying and saving image
-        $destinationPath = storage_path('img/'.$this['user_id']);;
+        $destinationPath = public_path().('/src/assets/img/uploads/'.$this['user_id']);;
         $extension = $file->getClientOriginalExtension();
         $filename = uniqid().'.'.$extension;
 

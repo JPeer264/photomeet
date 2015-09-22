@@ -5,3 +5,4 @@ Homestead.yaml
 /.idea
 .vagrant
 Vagrantfile
+public/src/assets/img/uploads
