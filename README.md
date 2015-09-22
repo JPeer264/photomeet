@@ -159,11 +159,11 @@ _returns:_
 
 **register / setUser**
 
-> **required**: & username=value & email=value & password=value & passwordProof=value 
+> **required**: & userName=value & email=value & password=value
 
 `www.page.com/api/user/new`
 
-`POST-DATA: ?username=value&email=value&password=value&passwordProof=value`
+`POST-DATA: ?username=value&email=value&password=value
 
 **delete User**
 > **required**: Token
@@ -206,7 +206,7 @@ isWeekly is not necessary because of the url parameter
 
 **newEntry**
 
-> **required**: & name=Simons%20cat%20in%20vienna & desc=value & username=value
+> **required**: & name=Simons%20cat%20in%20vienna & desc=value & file=file
 
 `www.page.com/api/challenge/challengeType/challengeID/new`
 

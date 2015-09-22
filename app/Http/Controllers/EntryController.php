@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use JWTAuth;
 
 class EntryController extends Controller
@@ -20,41 +21,23 @@ class EntryController extends Controller
 
     public function getDetails( $challengeType, $challenge_id, $entry_id)
     {
-        if(env('APP_DATAMODE') == "dummy"){
 
-            $result = array();
+        $challenge = Challenge::findOrFail($challenge_id);
+        $entry = Entry::findOrFail($entry_id);
 
-            $dummy = (object)array(
-                'id' => 1,
-                'name' => 'Dummy Entry #1',
-                'category' => 'weekly',
-                'img' => 'filename',
-                'desc' => 'This is a dummy description',
-                'userName' => 'Simon',
-                'userPic' => 'simon.jpg',
-                'likes' => 10
-            );
-            array_push($result, $dummy);
+        $user = $entry->user;
 
-            return $result;
+        unset($entry->challenge_id);
+        unset($entry->created_at);
+        unset($entry->updated_at);
+        unset($entry->user);
+        $entry->userPic = $user->userPic;
+        $entry->userName = $user->name;
+        $entry->category = ($challenge->isWeekly) ? 'weekly' : 'monthly';
+        $entry->likes = $entry->likesCount();
 
-        } else {
-            $challenge = Challenge::findOrFail($challenge_id);
-            $entry = Entry::findOrFail($entry_id);
+        return $entry;
 
-            $user = $entry->user;
-
-            unset($entry->challenge_id);
-            unset($entry->created_at);
-            unset($entry->updated_at);
-            unset($entry->user);
-            $entry->userPic = $user->userPic;
-            $entry->userName = $user->name;
-            $entry->category = ($challenge->isWeekly) ? 'weekly' : 'monthly';
-            $entry->likes = $entry->likesCount();
-
-            return $entry;
-        }
     }
 
     public function newEntry(Request $request, $challengeType, $challenge_id){
@@ -63,10 +46,13 @@ class EntryController extends Controller
             abort(403, 'Challenge is already expired');
         }else{
             $user = JWTAuth::parseToken()->authenticate();
+            $file = Input::file('file');
             $newEntry = $request->all();
             $newEntry['challenge_id'] = $challenge_id;
             $newEntry['user_id'] = $user->id;
-            return Entry::create($newEntry);
+            $entry = Entry::create($newEntry);
+            $entry->saveFile($file);
+            return $entry;
         }
     }
 }

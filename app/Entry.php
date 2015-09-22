@@ -16,7 +16,8 @@ class Entry extends Model
         'user_id',
         'img',
         'name',
-        'desc'
+        'desc',
+        'filename'
     ];
 
 
@@ -45,4 +46,18 @@ class Entry extends Model
     {
         return $this->belongsTo('App\Challenge');
     }
+
+    public function saveFile($file){
+
+        //modifying and saving image
+        $destinationPath = storage_path('img/'.$this['user_id']);;
+        $extension = $file->getClientOriginalExtension();
+        $filename = uniqid().'.'.$extension;
+
+        $file->move($destinationPath, $filename);
+
+        $this['filename']= $filename;
+        return $this->update();
+
+        }
 }

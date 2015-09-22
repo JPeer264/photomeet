@@ -17,6 +17,7 @@ class CreateEntriesTable extends Migration
             $table->string('img');
             $table->string('name');
             $table->text('desc');
+            $table->string('filename');
             $table->timestamps();
 
             $table->integer('user_id')->unsigned();
