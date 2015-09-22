@@ -96,7 +96,7 @@ angular
 
 			selector.css({
 				position: 'relative',
-				left: selector.position().left + selector.width()
+				left: selector.position().left + ( selector.width() / 2 )
 			});
 		};
 
@@ -113,7 +113,7 @@ angular
 
 			selector.css({
 				position: 'relative',
-				left: selector.position().left - selector.width()
+				left: selector.position().left - ( selector.width() / 2 )
 			});
 		};
 
