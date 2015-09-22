@@ -108,6 +108,12 @@ class TokenAuthController extends Controller
 
         $newuser['password'] = $password;
 
-        return User::create($newuser);
+        User::create($newuser);
+
+        $credentials = $request->only('email', 'password');
+
+        $token = JWTAuth::attempt($credentials);
+
+        return response()->json(compact('token'));
     }
 }

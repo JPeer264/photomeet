@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Challenge;
 use App\Entry;
+use App\Like;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Arr;
+use Mockery\CountValidator\Exception;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ChallengeController extends Controller
 {
@@ -50,6 +53,13 @@ class ChallengeController extends Controller
     public function getEntries($challengeType, $challenge_id)
     {
 
+        try{
+            $userToken = JWTAuth::parseToken()->authenticate();
+            $signed_in = true;
+        }catch (\Exception $e){
+            $signed_in = false;
+        }
+
         $challenge = Challenge::find($challenge_id);
         $entries = $challenge->entries;
 
@@ -65,6 +75,16 @@ class ChallengeController extends Controller
                 $entry->userName = $user->name;
                 $entry->category = ($challenge->isWeekly) ? 'weekly' : 'monthly';
                 $entry->likes = $entry->likesCount();
+                if($signed_in){
+                    $likes = Like::where('user_id', $userToken->id)->get();
+                    foreach($likes as $like){
+                        if($like->entry_id == $entry->id){
+                            $entry->liked = true;
+                        }else{
+                            $entry->liked = false;
+                        }
+                    }
+                }
             }
 
             return $challenge;
