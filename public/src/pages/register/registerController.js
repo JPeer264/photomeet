@@ -9,7 +9,7 @@ angular.module('pages.register')
 			// console.log(!!$scope.user.password);
 			var okBoo = false;
 
-			if ($scope.user !== undefined 
+			if (!!$scope.user
 					&& !!$scope.user.email 
 					&& !!$scope.user.password 
 					&& !!$scope.user.passwordProof) {
