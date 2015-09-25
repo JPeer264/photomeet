@@ -214,6 +214,14 @@ isWeekly is not necessary because of the url parameter
 
 !! Error if challenge is already expired !!
 
+
+**update**
+
+>Token required, POST Request
+
+`www.page.com/api/entry/{entry_id}/update`
+
+
 ### likes
 
 #### add like

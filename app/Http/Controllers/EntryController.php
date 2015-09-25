@@ -16,7 +16,7 @@ class EntryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('jwt.auth', ['only' => 'newEntry']);
+        $this->middleware('jwt.auth', ['except' => 'getDetails']);
     }
 
     public function getDetails( $challengeType, $challenge_id, $entry_id)
@@ -55,4 +55,16 @@ class EntryController extends Controller
             return $entry;
         }
     }
+
+    public function update(Request $request, $id){
+            $entry = Entry::findOrFail($id);
+            $user = JWTAuth::parseToken()->authenticate();
+
+            if($user->id == $entry->user_id) {
+                $entry->update($request->all());
+                return $entry;
+            }else{
+                abort(403, 'Not authorized to update this entry');
+            }
+        }
 }

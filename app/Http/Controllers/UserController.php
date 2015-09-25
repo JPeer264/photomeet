@@ -20,34 +20,13 @@ class UserController extends Controller
 
     public function getDetails($name)
     {
-        if(env('APP_DATAMODE') == "dummy"){
-
-            $result = array();
-
-            $dummy = (object)array(
-                'id' => 1,
-                'name' => 'Dummy Person',
-                'userPic' => 'profilPic.jpg',
-                'desc' => 'This is a dummy description',
-                'prename' => 'Simon',
-                'lastname' => 'Reinsperger',
-                'birthday' => Carbon::create(1993,8,11),
-                'city' => 'Vienna',
-                'biography' => 'some auto bio from user'
-
-            );
-            array_push($result, $dummy);
-
-            return $result;
-        } else{
-
-            if ( ! is_null($user = User::where('userName', $name)->first())) {
-                return $user;
-            }
-            throw new ModelNotFoundException;
 
 
+        if ( ! is_null($user = User::where('userName', $name)->first())) {
+            return $user;
         }
+        throw new ModelNotFoundException;
+
 
     }
 
