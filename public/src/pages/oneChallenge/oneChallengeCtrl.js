@@ -29,8 +29,6 @@ angular
 				trendigEntries;
 
 			// initialize challenge
-			// adding deadline to challenge object
-			receivedData.deadline  = dateService.getFormatedDate(receivedData.start);
 			$scope.challenge = receivedData;
 
 			if (receivedData.entries.length === 0) {
@@ -94,10 +92,15 @@ angular
 			
 			selector = $('.main-challenge-container .entry-container:eq(' + index + ')').find('.row');
 
-			selector.css({
-				position: 'relative',
-				left: selector.position().left + ( selector.width() / 2 )
-			});
+			if (selector.position().left <= 0) {
+				selector.css({
+					left: 0
+				});			
+			} else {
+				selector.css({
+					left: selector.position().left + ( selector.width() / 2 )
+				});
+			}
 		};
 
 		/**
@@ -106,15 +109,17 @@ angular
 		 * @param obj {Object}
 		 */
 		$scope.moveRight = function(obj) {
-			var selector,
-				index = $scope.entryTypes.indexOf(obj);
+			var index = $scope.entryTypes.indexOf(obj);
+			var selector = $('.main-challenge-container .entry-container:eq(' + index + ')').find('.row');
+			var lastEntry = $('.main-challenge-container .entry-container:eq(' + index + ')').find('.entry:last');
+			var lastEntryRight = lastEntry.offset().left + lastEntry.width();
 
-			selector = $('.main-challenge-container .entry-container:eq(' + index + ')').find('.row');
-
-			selector.css({
-				position: 'relative',
-				left: selector.position().left - ( selector.width() / 2 )
-			});
+			if (lastEntryRight >= selector.width()) {
+				selector.css({
+					left: selector.position().left - ( selector.width() / 2 )
+				});	
+			}
+			
 		};
 
 		/**
@@ -137,9 +142,9 @@ angular
 					var entry = data.data;
 					$scope.showEntryPopup = true;
 
-					if (entry.img === '') {
-						entry.img = 'http://www.prophoto-online.de/images_2014/3/9245/Kister-Josef-Orang-Utan-hochformat.jpg';
-					}
+					console.log(data);
+					// entry.img = 'tmp/assets/img/';
+					
 
 					$scope.poppedupEntry = entry;
 				});

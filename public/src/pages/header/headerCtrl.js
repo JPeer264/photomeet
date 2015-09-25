@@ -4,56 +4,28 @@ angular
 
 headerController.$inject = [
     '$scope',
-    'authService'
+    'authService',
+    'challengeService'
 ];
 
-function headerController($scope, authService) {
+function headerController($scope, authService, challengeService) {
     
     // todo get all images from /uploads/weekly und /uploads/monthly
-    $scope.images = [
-        {
-            src: 'http://www.doliwa-naturfoto.de/Bilder-Galerie/Tiere/Katzen/Katze4/wd_2101.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://www.designladen.com/natur/source/image/wolken.pict3574.jpg'
-        },
-        {
-            src: 'http://www.prophoto-online.de/images_2014/3/9245/Kister-Josef-Orang-Utan-hochformat.jpg'
-        },
-        {
-            src: 'http://www.juergen-baur.de/wordpress/wp-content/uploads/2012/06/Menschen-hochformat-131.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
-        },
-        {
-            src: 'http://cdn.instructables.com/FJ6/HL34/HG85CQD9/FJ6HL34HG85CQD9.MEDIUM.jpg'
+    challengeService.getChallenges('monthly').then(function(data) {
+        var challenges = data.data;
+        var defaultImage = 'http://www.doliwa-naturfoto.de/Bilder-Galerie/Tiere/Katzen/Katze4/wd_2101.jpg';
+        var imgArray = new Array();
+
+        for (var index in challenges) {
+            if (!challenges[index].img) {
+                imgArray.push(defaultImage);
+            } else {
+                imgArray.push(challenges[index].img);
+            }
         }
-    ];
+
+        $scope.images = imgArray;
+    });
 
     /**
      * Change the $scope clicked

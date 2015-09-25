@@ -27,15 +27,4 @@ angular
 			});
 			return promise;
 		};
-
-		/**
-		 * Function which uploads new challenges
-		 */
-		this.upload = function() {
-
-		};
-
-
-
-
 }]);

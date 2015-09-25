@@ -45,16 +45,8 @@ angular
 			var token, promise, hex, height, width;
 
 			token = authService.getToken();
-
-			if (data.img === '' || data.img === undefined) {
-				hex = Math.floor(Math.random()*16777215).toString(16);
-				height = Math.floor(Math.random() * (1000 - 600) + 600);
-				width = Math.floor(Math.random() * (600 - 400) + 400);
-
-				data.img = 'http://dummyimage.com/' + height + 'x' + width + '/' + hex + '/fff.jpg';
-			}
-			
-			$http({
+			console.log(data);
+			Upload.upload({
 				method: 'POST',
 				url: 'http://picstar.dev/api/challenge/' + url + '/new',
 				headers: {
@@ -62,9 +54,11 @@ angular
 					'Content-Type': 'application/json',
 					'Authorization': 'Bearer ' + token
 				},
+				file: data.file,
 				data: data
-			}).success(function() {
-				location.reload();
+			}).success(function(data) {
+				console.log(data);
+				// location.reload();
 			});
 		};
 

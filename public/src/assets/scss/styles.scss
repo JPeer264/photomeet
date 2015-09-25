@@ -211,7 +211,7 @@ input[type='submit'] {
 .main-challenge-container::before {
     content: "";
     width: 400%;
-    height: 85%;
+    height: calc(90% - 35px);
     background-color: lighten($bordercolor, 15%);
     position: absolute;
     left: -100%;
@@ -307,6 +307,7 @@ input[type='submit'] {
 
     .row {
         left: 0;
+        position: relative;
         transition: left 1s, right 1s;
         margin-left: 0;
         margin-right: 0;
@@ -425,31 +426,49 @@ input[type='submit'] {
 
 
 .register-container {
-    input {
-        line-height: 1.6em;
-    }
+  width: 500px;
+  margin: 0 auto !important;
+  margin-top: 20px;
+  height: 260px;
+  
 
-    input {
-        width: 150px;
-        margin: 2px;
-        border: 1px $bordercolor solid;
-        border-radius: 4px;
+     
+  input {
+    width: 220px;
+    margin: 2px;
+    border: 1px $maincolor solid;
+    background-color: #f9f9f9;
+    line-height: 1.9em;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    float: right;
+  }
+  label {
+    color: #555;
+    width: 250px;
+    display: block;
+    float: left;
+    clear: both;
+    text-transform: uppercase;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    
+  }
+  .register {
+    padding: 6px;
+    font-size: 1em;
+    transition: opacity 0.5s;
+    text-transform: uppercase;
+    float: right;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    width: 150px;
+    
+    &:hover {
+      opacity: 0.7;
     }
+  
+  }
 
-    label {
-        width: 10em;
-        display: block;
-        float: left;
-        clear: both;
-    }
-
-    .register {
-        padding: 7px;
-        font-size: 1em;
-        transition: opacity 0.5s;
-        
-        &:hover {
-            opacity: 0.7;
-        }
-    }
 }
